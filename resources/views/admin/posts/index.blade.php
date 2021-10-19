@@ -19,7 +19,7 @@
                     <td>{{ $post->created_at }}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary">Details</a>
-                        {{-- <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary">Edit</a> --}}
+                        <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-primary">Edit</a>
                         {{-- <a href="{{ route('admin.posts.destroy', $post->id) }}" class="btn btn-primary">Delete</a> --}}
 
 

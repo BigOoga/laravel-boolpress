@@ -64,7 +64,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        //l show an edit form
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -76,7 +77,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        //l requires 'fillable' in Post model
+        $post->update($data);
+
+        //l redirect to the just updated post
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**

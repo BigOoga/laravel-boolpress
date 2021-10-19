@@ -7,5 +7,9 @@
             <p>{{ $post->content }}</p>
             <address>{{ $post->created_at }}</address>
         </div>
+        <div class="row">
+            <img src="{{ $post->image }}" alt="">
+
+        </div>
     </div>
 @endsection
