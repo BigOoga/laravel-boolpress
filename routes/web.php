@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//# Auth::routes(); automatically added by scaffolding
+Auth::routes();
+
+//Route::get('/home', 'Admin\HomeController@index')->name('home');
+
+//# Routes that require authentication
+Route::middleware('auth')->namespace('Admin')->name('admin')->prefix('admin')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+
+    //# We use Route::resource for CRUD models
+    Route::resource('posts', 'PostController');
+});
