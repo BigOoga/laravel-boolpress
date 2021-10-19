@@ -1,6 +1,16 @@
 <div class="container">
-    <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
-        @method('PATCH')
+    @if ($post->exists)
+        <div class="row">
+            <h1>Edit</h1>
+        </div>
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+            @method('PATCH')
+        @else
+            <div class="row">
+                <h1>New Post</h1>
+            </div>
+    @endif
+    <form action="{{ route('admin.posts.store', $post->id) }}" method="POST">
         @csrf
 
         <div class="row">
@@ -19,7 +29,7 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" rows="4" name="content"> {{ $post->content }}"</textarea>
+                    <textarea class="form-control" rows="4" name="content"> {{ $post->content }}</textarea>
                 </div>
             </div>
         </div>
