@@ -14,19 +14,37 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.home');
 });
 
-//# Auth::routes(); automatically added by scaffolding
+//l Auth::routes(); automatically added by scaffolding
 Auth::routes();
 
 //Route::get('/home', 'Admin\HomeController@index')->name('home');
 
-//# Routes that require authentication
-Route::middleware('auth')->namespace('Admin')->name('admin')->prefix('admin')->group(function () {
+//l Routes that require authentication
+//l The auth middleware prevents from accessing these routes and redirects to a specified page
+//! Route->name() needs a dot to work
+
+Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
 
-    //# We use Route::resource for CRUD models
+    //l We use Route::resource for CRUD models
     Route::resource('posts', 'PostController');
 });
+
+
+//l Route that handles ANY unhandled routes
+Route::get("{any?}", function () {
+    return view('guest.home');
+})->where("any", ".*");
+
+
+
+
+
+//l possible guest route grouping
+// Route::namespace('Guest')->name('guest.')->prefix('guest')->group(function () {
+//     Route::get('/', 'HomeController@index')->name('home');
+// });
