@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -44,6 +45,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => ['required', 'max:50', 'unique:posts'],
+                'content' => ['required'],
+
+            ],
+            [
+                'title.required' => 'Title can\'t be empty',
+                'content.required' => 'Content can\'t be empty',
+                'title.max' => 'Title must be less than 50 characters',
+            ]
+        );
+
+
+
+
         $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);

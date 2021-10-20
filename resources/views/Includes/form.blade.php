@@ -17,19 +17,37 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" name="title" value="{{ $post->title }}">
+                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                        value="{{ old('title', $post->title) }}">
+                    @error('title')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
                     <label for="image" class="form-label">Image URL</label>
-                    <input type="text" class="form-control" name="image" value="{{ $post->image }}">
+                    <input type="text" class="form-control  @error('image') is-invalid @enderror" name="image"
+                        value="{{ old('image', $post->image) }}">
+                    @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
             </div>
             <div class="col-12">
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
-                    <textarea class="form-control" rows="4" name="content"> {{ $post->content }}</textarea>
+                    <textarea class="form-control  @error('content') is-invalid @enderror" rows="4"
+                        name="content"> {{ old('content', $post->content) }}</textarea>
+                    @error('content')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
             </div>
         </div>
