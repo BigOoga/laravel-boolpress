@@ -2,6 +2,9 @@ require ('./bootstrap');
 
 window.Vue = require('vue');
 
+//l This makes axios available in all of our JS files
+window.axios = require('axios');
+
 //l Import the App component
 import App from './components/App.vue';
 

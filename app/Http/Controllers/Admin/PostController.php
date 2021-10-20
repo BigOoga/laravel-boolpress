@@ -51,6 +51,12 @@ class PostController extends Controller
                 'content' => ['required'],
 
             ],
+            //l To specify custom error messages, add an array parameter to validate()
+            //l The Error bag will be automatically made available to the page
+            //l You can access the messages of the Error bag with the directive
+            //l @error('name_of_property') {{ $message }}
+            //l {{ $message }}
+            //l @enderror
             [
                 'title.required' => 'Title can\'t be empty',
                 'content.required' => 'Content can\'t be empty',
@@ -58,6 +64,7 @@ class PostController extends Controller
             ]
         );
 
+        //l The $errors variable is automatically made available to all views and is an instance of the MessageBag class.
 
 
 
