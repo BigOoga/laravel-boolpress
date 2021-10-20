@@ -16,8 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        //l the result of an Eloquen query returns a 'collection'
+        //$posts = Post::all();
+        $posts = Post::paginate(5);
+        //l the result of an Eloquent query returns a 'collection'
 
 
         return response()->json($posts);

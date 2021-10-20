@@ -10,6 +10,7 @@
                     {{ post.content }}
                 </p>
             </div>
+            <div>{{ getFormattedDate(post.created_at) }}</div>
         </div>
         <div class="card col-4">
             <img :src="post.image" alt="" class="img-fluid" />
@@ -22,6 +23,14 @@ export default {
     name: "PostCard",
     props: {
         post: Object
+    },
+    methods: {
+        getFormattedDate(date) {
+            //l For this simple operation we use JS built in Date object
+            const postDate = new Date(date);
+            const dateX = postDate.toLocaleDateString("it-IT");
+            return dateX;
+        }
     }
 };
 </script>
