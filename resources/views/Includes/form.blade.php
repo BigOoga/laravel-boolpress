@@ -50,6 +50,24 @@
                     @enderror
                 </div>
             </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" name="category_id">
+                            <option value="null">None</option>
+                            @foreach ($categories as $category)
+                                <option @if (old('category_id') == $category->id || $post->category_id == $category->id)
+                                    selected
+                                    @endif value="{{ $category->id }}">{{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>

@@ -19,8 +19,7 @@ class AddForeignKeyToPostsTable extends Migration
             $table->unsignedBigInteger('category_id')->after('id')->nullable();
             //l Then we define the foreign key itself
             //l By saying what column of what table it's related to, and setting it to null on delete
-            //! NOT WORKING
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set_null');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
 
             //# Terser method
             //$table->foreignId('category_id')->constrained();

@@ -9,12 +9,15 @@
             <p>{{ $post->content }}</p>
         </div>
         <div class="row">
-            <address>{{ $post->created_at }}</address>
+            <address>Posted on: {{ $post->created_at }}</address>
         </div>
-    </div>
-    <div class="row">
-        <img src="{{ $post->image }}" alt="">
+        <div class="row">
+            <address>Category: {{ $post->category->name }}</address>
+        </div>
+        <div class="row">
+            <img src="{{ $post->image }}" alt="">
 
+        </div>
     </div>
     </div>
 @endsection

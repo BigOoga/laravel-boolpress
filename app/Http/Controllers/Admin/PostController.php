@@ -5,6 +5,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -33,8 +34,10 @@ class PostController extends Controller
      */
     public function create()
     {
+
         $dummy = new Post();
-        return view('admin.posts.create', ['post' => $dummy]);
+        $categories = Category::all();
+        return view('admin.posts.create', ['post' => $dummy, 'categories' => $categories]);
     }
 
     /**
@@ -45,11 +48,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //# Validation
         $request->validate(
             [
                 'title' => ['required', 'max:50', 'unique:posts'],
                 'content' => ['required'],
-
             ],
             //l To specify custom error messages, add an array parameter to validate()
             //l The Error bag will be automatically made available to the page
@@ -66,8 +69,7 @@ class PostController extends Controller
 
         //l The $errors variable is automatically made available to all views and is an instance of the MessageBag class.
 
-
-
+        //# Storage
         $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);
@@ -97,7 +99,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //l show an edit form
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
