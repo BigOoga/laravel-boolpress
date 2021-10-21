@@ -32,6 +32,8 @@ Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->
 
     //l We use Route::resource for CRUD models
     Route::resource('posts', 'PostController');
+
+    Route::resource('categories', 'CategoryController');
 });
 
 

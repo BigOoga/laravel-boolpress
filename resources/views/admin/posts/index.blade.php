@@ -8,7 +8,7 @@
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col">Title <a class="btn btn-primary " href="{{ route('admin.posts.create') }}"><span>New
+                <th scope="col">Title <a class="btn btn-primary ml-3" href="{{ route('admin.posts.create') }}"><span>New
                             Post+</span></a></th>
                 <th scope="col">Category</th>
                 <th scope="col">Created at</th>
