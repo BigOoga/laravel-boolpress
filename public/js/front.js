@@ -2120,6 +2120,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PostCard",
   props: {
@@ -38702,7 +38705,19 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", [_vm._v(_vm._s(_vm.getFormattedDate(_vm.post.created_at)))])
+      _c("div", [
+        _vm._v(
+          "Posted on: " + _vm._s(_vm.getFormattedDate(_vm.post.created_at))
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v(
+          "\n            Category: " +
+            _vm._s(_vm.post.category ? _vm.post.category.name : "None") +
+            "\n        "
+        )
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card col-4" }, [

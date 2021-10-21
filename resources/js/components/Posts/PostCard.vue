@@ -10,7 +10,10 @@
                     {{ post.content }}
                 </p>
             </div>
-            <div>{{ getFormattedDate(post.created_at) }}</div>
+            <div>Posted on: {{ getFormattedDate(post.created_at) }}</div>
+            <div>
+                Category: {{ post.category ? post.category.name : "None" }}
+            </div>
         </div>
         <div class="card col-4">
             <img :src="post.image" alt="" class="img-fluid" />

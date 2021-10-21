@@ -30,4 +30,5 @@ Route::namespace('Api')->group(function () {
     //Route::delete('/posts/{post}', 'PostController@destroy');
     //l Or use the Route::resource method
     Route::resource('posts', 'PostController');
+    Route::resource('categories', 'CategoryController');
 });

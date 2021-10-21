@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-//l We need to import our Model
-use App\Models\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
-class PostController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$posts = Post::all();
-        //l method with() to fetch the specified related table
-        $posts = Post::with('category')->paginate(5);
-        //l the result of an Eloquent query returns a 'collection'
-
-
-        return response()->json($posts);
+        $categories = Category::All();
+        return response()->json($categories);
     }
 
     /**
@@ -42,10 +36,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-
-        return response()->json($post);
+        //
     }
 
     /**
@@ -66,10 +59,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
-        //l Returns code 204
-        return response('', 204);
+        //
     }
 }
