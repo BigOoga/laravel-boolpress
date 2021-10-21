@@ -14,6 +14,7 @@ class AddForeignKeyToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
+            //# Verbose method
             //l First we define the column
             $table->unsignedBigInteger('category_id')->after('id')->nullable();
             //l Then we define the foreign key itself
@@ -21,7 +22,7 @@ class AddForeignKeyToPostsTable extends Migration
             //! NOT WORKING
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set_null');
 
-            //l Terser method
+            //# Terser method
             //$table->foreignId('category_id')->constrained();
         });
     }
