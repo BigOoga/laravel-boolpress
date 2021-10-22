@@ -12,7 +12,17 @@
             </div>
             <div>Posted on: {{ getFormattedDate(post.created_at) }}</div>
             <div>
-                Category: {{ post.category ? post.category.name : "None" }}
+                Category:
+
+                <span
+                    :style="{
+                        backgroundColor: post.category
+                            ? post.category.color
+                            : ''
+                    }"
+                    class="badge"
+                    >{{ post.category ? post.category.name : "None" }}</span
+                >
             </div>
         </div>
         <div class="card col-4">

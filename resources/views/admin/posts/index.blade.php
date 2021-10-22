@@ -23,7 +23,8 @@
 
                     @if ($post->category)
 
-                        <td> <span class="badge badge-primary">{{ $post->category->name }}</span></td>
+                        <td> <span style="background-color:{{ $post->category->color }}"
+                                class="badge text-shadow">{{ $post->category->name }}</span></td>
 
                     @else
                         <td> <span class="badge badge-secondary">None</span></td>

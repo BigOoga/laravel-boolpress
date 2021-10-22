@@ -26,6 +26,18 @@
                     @enderror
                 </div>
             </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Color Hex</label>
+                    <input type="text" class="form-control @error('color') is-invalid @enderror" name="color"
+                        value="{{ old('color', $category->color) }}">
+                    @error('color')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>

@@ -1,6 +1,11 @@
 <template>
     <section id="posts" class="d-relative">
         <Loader v-if="isLoading" />
+        <Pagination
+            :pages="lastPage"
+            :currentPage="currentPage"
+            @page-change="changePage"
+        />
         <PostCard v-for="(post, i) in posts" :key="i" :post="posts[i]" />
         <Pagination
             :pages="lastPage"

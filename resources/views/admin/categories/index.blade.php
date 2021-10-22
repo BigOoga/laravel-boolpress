@@ -17,6 +17,7 @@
                         href="{{ route('admin.categories.create') }}"><span>New
                             +</span></a></th>
 
+                <th scope="col">Color</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Action</th>
 
@@ -28,6 +29,8 @@
                     <td>{{ $category->name }}</td>
 
 
+                    <td><span style="background-color:{{ $category->color }}"
+                            class="badge text-shadow">{{ $category->color }}</span></td>
                     <td>{{ $category->created_at }}</td>
                     <td>
                         <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-primary mx-1">Edit</a>

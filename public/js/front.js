@@ -2037,6 +2037,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 //l We imported axios globally in front.js
 //import axios from 'axios';
 
@@ -2100,6 +2105,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38654,6 +38669,11 @@ var render = function() {
     [
       _vm.isLoading ? _c("Loader") : _vm._e(),
       _vm._v(" "),
+      _c("Pagination", {
+        attrs: { pages: _vm.lastPage, currentPage: _vm.currentPage },
+        on: { "page-change": _vm.changePage }
+      }),
+      _vm._v(" "),
       _vm._l(_vm.posts, function(post, i) {
         return _c("PostCard", { key: i, attrs: { post: _vm.posts[i] } })
       }),
@@ -38712,10 +38732,16 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", [
-        _vm._v(
-          "\n            Category: " +
-            _vm._s(_vm.post.category ? _vm.post.category.name : "None") +
-            "\n        "
+        _vm._v("\n            Category:\n\n            "),
+        _c(
+          "span",
+          {
+            staticClass: "badge",
+            style: {
+              backgroundColor: _vm.post.category ? _vm.post.category.color : ""
+            }
+          },
+          [_vm._v(_vm._s(_vm.post.category ? _vm.post.category.name : "None"))]
         )
       ])
     ]),

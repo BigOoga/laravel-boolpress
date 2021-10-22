@@ -10944,3 +10944,7 @@ a.text-dark:focus {
   }
 }
 
+.text-shadow {
+  text-shadow: 0 0 3px #000;
+}
+
