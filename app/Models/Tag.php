@@ -8,8 +8,8 @@ class Tag extends Model
 {
 
     //l public function <reference table>()
-    public function categories()
+    public function posts()
     {
-        $this->belongsToMany('App\Models\Category');
+        return $this->belongsToMany('App\Models\Post');
     }
 }

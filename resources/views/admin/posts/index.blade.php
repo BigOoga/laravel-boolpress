@@ -11,6 +11,7 @@
                 <th scope="col">Title <a class="btn btn-primary ml-3" href="{{ route('admin.posts.create') }}"><span>New
                             Post+</span></a></th>
                 <th scope="col">Category</th>
+                <th scope="col">Tags</th>
                 <th scope="col">Created at</th>
                 <th scope="col">Action</th>
 
@@ -30,6 +31,15 @@
                         <td> <span class="badge badge-secondary">None</span></td>
 
                     @endif
+                    <td>
+                        {{-- If a post has no tags, we receive an empty array --}}
+                        @forelse ($post->tags as $tag)
+                            <span style="background-color:{{ $tag->color }}"
+                                class="badge text-shadow">{{ $tag->name }}</span>
+                        @empty
+                            None
+                        @endforelse
+                    </td>
                     <td>{{ $post->created_at }}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary mx-1">Details</a>

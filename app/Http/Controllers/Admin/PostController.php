@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -37,7 +38,8 @@ class PostController extends Controller
 
         $dummy = new Post();
         $categories = Category::all();
-        return view('admin.posts.create', ['post' => $dummy, 'categories' => $categories]);
+        $tags = Tag::all();
+        return view('admin.posts.create', ['post' => $dummy, 'categories' => $categories, 'tags' => $tags]);
     }
 
     /**
@@ -52,7 +54,7 @@ class PostController extends Controller
         $request->validate(
             [
                 'title' => ['required', 'max:50', 'unique:posts'],
-                'content' => ['required'],
+                'content' => ['required'], 'tags' => ['nullable', 'exists:categories,id']
             ],
             //l To specify custom error messages, add an array parameter to validate()
             //l The Error bag will be automatically made available to the page
@@ -75,6 +77,13 @@ class PostController extends Controller
         $newPost->fill($data);
         $newPost->slug = Str::of($newPost->title)->slug('-');
         $newPost->save();
+        //l we save the new post regardless of tags
+        //l if we receive tags in the request, attach
+
+        if (array_key_exists('tags', $data)) {
+            $newPost->tags()->attach($data['tags']);
+        }
+
 
         return redirect()->route('admin.posts.show', $newPost->id);
     }
@@ -100,7 +109,8 @@ class PostController extends Controller
     {
         //l show an edit form
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
