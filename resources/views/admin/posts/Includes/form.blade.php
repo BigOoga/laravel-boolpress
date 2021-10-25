@@ -74,8 +74,12 @@
                     @foreach ($tags as $tag)
 
                         <div class="form-check form-check-inline">
+                            {{-- Checked ? --}}
+                            {{-- is $tag->id  in old... --}}
+                            {{-- is there an old 'tags'? --}}
+                            {{-- if not, check in $postTagIds --}}
                             <input class="form-check-input" type="checkbox" id="tags-{{ $tag->name }}" name="tags[]"
-                                value="{{ $tag->id }}" @if (in_array($tag->id, old('tags', []))) checked @endif>
+                                value="{{ $tag->id }}" @if (in_array($tag->id, old('tags', $postTagIds))) checked @endif>
                             <label class="form-check-label" for="tags-{{ $tag->name }}">{{ $tag->name }}</label>
                             @error('tags')
                                 <div class="invalid-feedback">

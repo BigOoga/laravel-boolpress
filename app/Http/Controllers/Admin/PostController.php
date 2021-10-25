@@ -110,7 +110,10 @@ class PostController extends Controller
         //l show an edit form
         $categories = Category::all();
         $tags = Tag::all();
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        //l pluck value of column 'id' of all tags related to this post, push them to an array
+        //l toArray is necessary to remove the wrapping, as you'd otherwise obtain a collection of instances
+        $postTagIds = $post->tags->pluck('id')->toArray();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'postTagIds'));
     }
 
     /**
@@ -122,10 +125,38 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
+        //# Validation
+        $request->validate(
+            [
+                'title' => ['required', 'max:50', Rule::unique('posts')->ignore($post->id)],
+                'content' => ['required'], 'tags' => ['nullable', 'exists:categories,id']
+            ],
+            //l To specify custom error messages, add an array parameter to validate()
+            //l The Error bag will be automatically made available to the page
+            //l You can access the messages of the Error bag with the directive
+            //l @error('name_of_property') {{ $message }}
+            //l {{ $message }}
+            //l @enderror
+            [
+                'title.required' => 'Title can\'t be empty',
+                'content.required' => 'Content can\'t be empty',
+                'title.max' => 'Title must be less than 50 characters',
+            ]
+        );
+
         $data = $request->all();
 
         //l requires 'fillable' in Post model
+        //l update: fills and saves
         $post->update($data);
+
+        //l check if we received tags from the
+        if (!array_key_exists('tags', $data)) {
+            $post->tags()->detach();
+        } else {
+            $post->tags()->sync($data['tags']);
+        }
 
         //l redirect to the just updated post
         return redirect()->route('admin.posts.show', $post->id);
